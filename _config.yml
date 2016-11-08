@@ -1,13 +1,11 @@
 # *folio theme
 # Site settings
 title: "svet's lab"
-email: you@example.com
 description: > # this means to ignore newlines until "baseurl:"
   A simple, whitespace, helvetica based portfolio theme.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "svepe.github.io" # the base hostname & protocol for your site
-twitter_username: twitter_username
-github_username:  github_username
+url: "https://svepe.github.io" # the base hostname & protocol for your site
+github_username: svepe
 
 # Build settings
 markdown: kramdown
@@ -17,7 +15,7 @@ highlighter: rouge
 paginate: 15
 paginate_path: "/blog/page:num/"
 
-ollections:
+collections:
   lablogs:
     output: true
     permalink: /lablogs/:path/
