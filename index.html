@@ -2,4 +2,14 @@
 layout: default
 ---
 
-{% include portfolio.html %}
+{% comment %}
+<div class="header-bar">
+  <h2> Probabilistic Programming </h2>
+</div>
+{% include portfolio.html topic="pprog" %}
+{% endcomment %}
+
+<div class="header-bar">
+  <h2> Inference </h2>
+</div>
+{% include portfolio.html topic="inference" %}

@@ -1,83 +1,103 @@
-/**
- * Reset some basic elements
- */
-body, h1, h2, h3, h4, h5, h6,
-p, blockquote, pre, hr,
-dl, dd, ol, ul, figure {
-    margin: 0;
-    padding: 0;
+//
+// Reset some basic elements
+//
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
 }
 
-
-
-/** Variables **********************************************/
+// Variables
 $base-font-family:              Helvetica, sans-serif;
 $base-line-height:              1.5em;
 $horizontal-spacing-unit:       50px;
 $vertical-spacing-unit:         40px;
 $nav-height:                    56px;
 
-/* portfolio tinkering */
-$img_spacing: 5px; 
+// portfolio tinkering
+$img_spacing: 5px;
 $img_height: 275px;
 $caption_font_size: 12px;
 $caption_color: #aaa;
 
-/* COLORS  */
-$red:  #FF3636;
-$orange: #F29105;
-$blue: #2698BA;
-$green: #11D68B;
-$lime_green: #B7D12A;
-$purple: #B509AC;
+//  Colors
+$red:  #ff3636;
+$orange: #f29105;
+$blue: #2698ba;
+$green: #11d68b;
+$lime_green: #b7d12a;
+$purple: #b509ac;
+$white: #fff;
 
+$base16-red:     #f92672;
+$base16-orange:  #fd971f;
+$base16-yellow:  #f4bf75;
+$base16-green:   #a6e22e;
+$base16-cyan:    #a1efe4;
+$base16-blue:    #66d9ef;
+$base16-magenta: #ae81ff;
+$base16-brown:   #c63;
 
-$grey-color-dark: #333;   /* footer */
-$grey-color-light: #ddd;  /* navigation bar border */
+$grey-color-dark: #333;   // footer
+$grey-color-medium: #aaa;
+$grey-color-light: #ddd;  // navigation bar border
 $text-color:     #666;
 
-/* Set theme color *************************/
-$theme-color:   $blue;
+// Set theme color
+$theme-color: $blue;
 
-
-/************************************************************/
-
-/**
- * Basic styling
- */
+//
+// Basic styling
+//
 body {
-    font-family: $base-font-family;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    font-weight: 100;
-    color: $text-color;
-    background-color: $background-color;
-    -webkit-text-size-adjust: 100%;
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  font-weight: 100;
+  line-height: $base-line-height;
+  -webkit-text-size-adjust: 100%;
 }
 
-
-
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-p, blockquote, pre,
-ul, ol, dl, figure,
+//
+// Set `margin-bottom` to maintain vertical rhythm
+//
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
 %vertical-rhythm {
-    margin-bottom: $vertical-spacing-unit / 2;
+  margin-bottom: $vertical-spacing-unit / 2;
 }
 
 .alignright {
-    float: right;
+  float: right;
 }
 
-
-hr{
-    /* Inset, by Dan Eden */
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-
+hr {
+  // Inset, by Dan Eden
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  height: 0;
 }
 
 
@@ -104,7 +124,7 @@ ul, ol {
 li {
     > ul,
     > ol {
-         margin-bottom: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -126,9 +146,9 @@ a {
     text-decoration: none;
     /*
     &:visited {
-        color: darken($brand-color, 15%); 
+        color: darken($brand-color, 15%);
     }
-    */
+   */
     &:hover {
         color: $theme-color;
         text-decoration: none;
@@ -192,7 +212,7 @@ pre {
 
 /**
  * Wrapper
- */ 
+ */
 
 .wrapper {
     max-width: -webkit-calc(800px - (#{$horizontal-spacing-unit} * 2));
@@ -223,6 +243,3 @@ pre {
         clear: both;
     }
 }
-
-
-

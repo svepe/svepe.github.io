@@ -1,89 +1,98 @@
+//
+// * Site header   **********************************************************
 
-/**
- * Site header   **********************************************************
- */
+
 .site-header {
-border-bottom: 1px solid $grey-color-light;
-background-color: #fff;
-opacity: 0.75;
-position:fixed;
-left:0px;
-top:0px;
-height:56px;
-width:100%;
-z-index: 50;
+  background-color: $white;
+  border-bottom: 1px solid $grey-color-light;
+  height: 56px;
+  left: 0;
+  opacity: .75;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
 }
 
 .site-title {
-font-size: 20px;
-line-height: $nav-height;
-letter-spacing: -1px;
-margin-bottom: 0;
-&:hover {
-text-decoration: none;
-color: $theme-color;
-    }
+  font-size: 20px;
+  letter-spacing: -1px;
+  line-height: $nav-height;
+  margin-bottom: 0;
+
+  &:hover {
+    color: $theme-color;
+    text-decoration: none;
+  }
 }
+
 .site-nav {
-float: right;
-line-height: $nav-height;
-.page-link{
-line-height: $base-line-height;
-        // Gaps between nav items, but not on the first one
-&:not(:first-child) {
-margin-left: 10px;
-        }
+  float: right;
+  line-height: $nav-height;
+
+  @include media-query($on-palm) {
+    position: fixed;
+    right: 10px;
+    text-align: right;
+    top: 0;
+
+    &:hover .trigger {
+      display: block;
+      padding-bottom: 5px;
     }
-@include media-query($on-palm) {
-position: fixed;
-top: 0px;
-right: 10px;
-text-align: right;
-&:hover .trigger {
-display: block;
-padding-bottom: 5px;
-        }
-.page-link {
-display: line;
-        }
+
+    .page-link {
+      display: line;
     }
+  }
+
+  .page-link {
+    line-height: $base-line-height;
+    // Gaps between nav items, but not on the first one
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
 }
 
-.header-bar{
-    left: 0px;
-    top: 0px;
-    position: relative;
-    font-size: 20px;
-    display: block;
-    opacity: 0.75;
-    width: 100%;
-    text-align: center;
-    padding-top: 25px;
-    line-height: 3em;
-    z-index: 25;
-    h1{
-        color: $theme-color;
-        font-size:75px;
-    }
-    h2{
-        font-size:25px;
-    }
+.header-bar {
+  display: block;
+  font-size: 20px;
+  left: 0;
+  line-height: 3em;
+  opacity: .75;
+  padding-top: 25px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 25;
+
+  h1 {
+    color: $theme-color;
+    font-size: 75px;
+  }
+
+  h2 {
+    font-size: 25px;
+    text-align: left;
+  }
 }
 
-/**
- * Site footer  **********************************************************
- */
+//
+// Site footer  **********************************************************
+//
 .site-footer {
-border-top: 1px solid $grey-color-dark;
-font-size: 10px;
-background-color: $grey-color-dark;
-padding: 2px;
-color: #aaa;
-position:fixed;
-left:0px;
-bottom:0px;
-height:25px;
-width:100%;
+  background-color: $grey-color-dark;
+  border-top: 1px solid $grey-color-dark;
+  color: #aaa;
+  font-size: 10px;
+  padding: 2px;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:25px;
+  width:100%;
 }
 /**
  * Pagination   **********************************************************
@@ -162,27 +171,18 @@ font-size: 18px;
 .post-meta {
 font-size: $small-font-size;
 color: $grey-color;
-margin-bottom: 0px; 
+margin-bottom: 0px;
 }
 .post-link {
 display: block;
 font-size: 42px;
 }
 
-/** Poem formatting ********************************************/
-.poem-title {
-font-size: 24px;
-letter-spacing: -1px;
-line-height: 1;
-@include media-query($on-laptop) {
-font-size: 16px;
-    }
-}
 
-
-/** 
+/**
  * Portfolio grid **********************************************************
 */
+
 // Nicolas Gallagher's micro clearfix hack
 // http://nicolasgallagher.com/micro-clearfix-hack/
 .clearfix:before,
@@ -192,6 +192,9 @@ display: table;
 }
 .clearfix:after {
 clear: both;
+}
+.portfolio {
+  overflow: auto;
 }
 .project {
 width: 33.33%;
@@ -207,11 +210,7 @@ height: 230px;
 overflow: hidden;
 }
 .thumbnail img{
-width: 500px;
-height: auto;
-position: relative;
-left: -25%;
-top: -5%;
+  object-fit: contain;
 }
 .thumbnail a{
 float: left;
@@ -228,13 +227,16 @@ bottom: 0;
 right: 0;
 background: rgba(0,0,0,0.4);
 color: $grey-color-light;
-padding: 40px;
-text-align: center;
+padding: 30px;
+text-align: left;
+}
+.thumbnail a span h1 {
+    line-height: 100%;
 }
 .thumbnail a:hover span {
 display: block;
 }
-/** 
+/**
  * Portfolio pages **********************************************************
 */
 .blankbox{
@@ -247,11 +249,11 @@ overflow: hidden;
 box-sizing:border-box;
 padding: $img_spacing;
 }
-.col{ 
+.col{
 width: 100%;
 height: 100%;
 float: left;
-object-fit: cover;
+object-fit: contain;
 box-sizing:border-box;
 padding: $img_spacing;
 }
