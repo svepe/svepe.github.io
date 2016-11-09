@@ -10,6 +10,12 @@
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: { extensions: ["color.js"] },
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    });
+    </script>
     <script type="text/javascript" async
       src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
