@@ -149,6 +149,7 @@ font-size: 36px;
     }
 }
 .post-content {
+text-align: justify;
 h2 {
 font-size: 42px;
 @include media-query($on-laptop) {
@@ -157,6 +158,7 @@ font-size: 28px;
     }
 h3 {
 font-size: 30px;
+line-height: 3;
 @include media-query($on-laptop) {
 font-size: 22px;
         }
