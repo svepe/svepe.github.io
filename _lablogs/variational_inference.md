@@ -68,9 +68,9 @@ the most widely used, defined as:
 $$
 \begin{align}
 \mathcal{D} _ {KL} (q || p)
-&= \int_{-\infty}^{\infty}q(x)log\frac{q(x)}{p(x)}dx = \nonumber \\
+&= \int_{-\infty}^{\infty}q(x)\log\frac{q(x)}{p(x)}dx \nonumber \\
 \nonumber \\
-&= \mathbb{E} _ {x \sim q(x)}[\log q(x) - \log p(x)] = \label{eq:kl-exp}\\
+&= \mathbb{E} _ {x \sim q(x)}[\log q(x) - \log p(x)] \label{eq:kl-exp}\\
 \nonumber \\
 &= H(q, p) - H(q) \label{eq:kl-ent}
 \end{align}
@@ -109,11 +109,11 @@ $$
     [\log q _ {\phi}(\mathbb{z}) -
     \underbrace{\log p (\mathbb{z} | \mathbb{x})}_
       {\log p (\mathbb{z}, \mathbb{x}) -
-       \log p (\mathbb{x})}] = \nonumber \\
+       \log p (\mathbb{x})}] \nonumber \\
 &= \mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
     [\log q _ {\phi}(\mathbb{z}) -
      \log p (\mathbb{z}, \mathbb{x})] +
-     \log p (\mathbb{x}) = \nonumber \\
+     \log p (\mathbb{x}) \nonumber \\
 \nonumber \\
 &= - \mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
     [\log p (\mathbb{z}, \mathbb{x}) -
