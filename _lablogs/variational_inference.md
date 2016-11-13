@@ -6,6 +6,12 @@ topic: inference
 img: /img/vi-intro.png
 ---
 
+This post is meant to be an introduction to variational inference (VI) for
+people who have machine learning background, but have not studied VI in detail
+before. So if you want to see what the 'evidence lower bound' is, how it is
+derived and why and how to maximise it, just carry on reading.
+
+### Introduction
 Probabilisitc machine learning recasts the problem of learning into an inference
 task where the observed data $\mathbb{x}$ is used to learn the distribution of
 latent variables $\mathbb{z}$ that can represent either unknown parameters or
