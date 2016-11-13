@@ -6,9 +6,9 @@ topic: inference
 img: /img/vi-intro.png
 ---
 
-Probabilisitc machine learning casts the problem of learning in an inference
+Probabilisitc machine learning recasts the problem of learning into an inference
 task where the observed data $\mathbb{x}$ is used to learn the distribution of
-latent variables $\mathbb{z}$ which can represent unknown parameters or
+latent variables $\mathbb{z}$ that can represent either unknown parameters or
 unobservable quantities in the problem domain. We are interested in
 finding the posterior over the latent variables
 
@@ -27,21 +27,17 @@ p(\mathbb{x}) =
   \mathrm{d}\mathbb{z}
 $$
 
-is often an intractible high-dimensional integral which does not have a closed
-form solution. Bayesian inference methods attempt to resolve this problem
-by relying on techniques such as sampling or approximations. Variational
-inference is a method for approximate Bayesian inference where the main idea
-is to approximate the distribution of interest, in our case
-$p(\mathbb{z} | \mathbb{x})$, with another simpler distribution
-$q(\mathbb{z})$ and make sure it is similar enough to
-$p(\mathbb{z} | \mathbb{x})$. In fact, we consider an entire family of
-approximate distributions $q_{\phi}(\mathbb{z})$ parameterised by $\phi$. In
-order to make our derivation more general we will also assume that the posterior
-is parameterised as well by $\theta$, $p _ \theta (\mathbb{z} | \mathbb{x})$.
+is often an intractable high-dimensional integral which does not have a closed
+form solution. Inference methods attempt to resolve this problem by relying on
+techniques such as sampling or approximations. In variational Bayesian inference
+we approximate the true underlying posterior distribution
+$p(\mathbb{z} | \mathbb{x})$ with another simpler distribution
+$q _ \phi(\mathbb{z})$ and optimise $\phi$ such that
+$q _ \phi(\mathbb{z}) = p(\mathbb{z} | \mathbb{x})$.
 
 In the plot below, $\color{#d49f55}{q_{\phi}(z)}$ is a Gaussian distribution
 which is fitted to approximate the unknown posterior $\color{#8a8a8a}
-{p(\mathbb{x} | \mathbb{z})}$.
+{p(\mathbb{z} | \mathbb{x})}$.
 
 <div class="img_row">
     <img class="col three" src="/img/vi-intro.png"/>
@@ -53,15 +49,15 @@ which is fitted to approximate the unknown posterior $\color{#8a8a8a}
   <font color="#8a8a8a">$p(\mathbb{x} | \mathbb{z})$</font>
 </div>
 
-In order to fit $q_{\phi}(\mathbb{z})$ we need a distance measure
-$\mathcal{D}$, which we should minimise, between the approximate distribution
-and the true underlying one. Thus, $\mathcal{D}$ should take 2 distributions
-as input arguments and provide a single positive number which resembles the
-distance between the two. The branch of mathematics which deals with
-optimising higher-order functions (i.e. functions which take functions as
-their input) is called calculus of variations, hence the name *variational
-inference*. We could use a variety of distance operators [<sup>1</sup>](#ref1)
-and KL-divergence is the most widely used, defined as:
+In order to fit $q_{\phi}(\mathbb{z})$ to $p(\mathbb{z} | \mathbb{x})$ we need
+a distance measure $\mathcal{D}$ between the two, which we should minimise.
+Thus, $\mathcal{D}$ should take 2 distributions as input arguments and provide
+a single positive number which resembles the distance between the two
+distributions. The branch of mathematics which deals with optimising
+higher-order functions (i.e. functions which take functions as their input) is
+called calculus of variations, hence the name *variational inference*. We could
+use a variety of distance operators [<sup>1</sup>](#ref1) and KL-divergence is
+the most widely used, defined as:
 
 $$
 \begin{align}
@@ -87,7 +83,7 @@ $$
 \phi^*= \underset{\phi}{\arg\min}
         \,\mathcal{D} _ {KL}
           \left(q_{\phi}(\mathbb{z}) ||
-          p _ {\theta}(\mathbb{z} | \mathbb{x})\right)
+          p (\mathbb{z} | \mathbb{x})\right) \label{eq:dkl-argmin}
 \end{align}
 $$
 
@@ -96,28 +92,96 @@ tricks in order to come up with a stochastic optimisation procedure.
 
 ### Evidence Lower Bound (ELBO) Derivation
 
-Let's start from equation $(\ref{eq:kl-exp})$:
+Let's start from equation (\ref{eq:kl-exp}):
 
 $$
 \begin{align}
 \,\mathcal{D} _ {KL}
     \left(q _ {\phi}(\mathbb{z}) ||
-    p _ {\theta}(\mathbb{z} | \mathbb{x})\right)
+    p (\mathbb{z} | \mathbb{x})\right)
 &= \mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
     [\log q _ {\phi}(\mathbb{z}) -
-    \underbrace{\log p _ {\theta}(\mathbb{z} | \mathbb{x})}_
-      {\propto \, {p _ {\theta}(\mathbb{x}|\mathbb{z}) p _ {\theta}(\mathbb{z})}}] = \nonumber \\
+    \underbrace{\log p (\mathbb{z} | \mathbb{x})}_
+      {\log p (\mathbb{z}, \mathbb{x}) -
+       \log p (\mathbb{x})}] = \nonumber \\
+&= \mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
+    [\log q _ {\phi}(\mathbb{z}) -
+     \log p (\mathbb{z}, \mathbb{x})] +
+     \log p (\mathbb{x}) = \nonumber \\
+\nonumber \\
+&= - \mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
+    [\log p (\mathbb{z}, \mathbb{x}) -
+     \log q _ {\phi}(\mathbb{z})] +
+     \log p (\mathbb{x}) \nonumber \\
+\nonumber \\
+&= - L(\phi) + E \label{eq:elbo-simple} \geq 0
 \end{align}
 $$
 
+Therefore, equation (\ref{eq:dkl-argmin}) becomes
+
+$$
+\begin{align}
+\phi^*&= \underset{\phi}{\arg\min}
+        \,\mathcal{D} _ {KL}
+          \left(q_{\phi}(\mathbb{z}) ||
+          p (\mathbb{z} | \mathbb{x})\right) \nonumber \\
+&= \underset{\phi}{\arg\min}\{-L(\phi) + E\} \nonumber \\
+&= \underset{\phi}{\arg\max}\{L(\phi)\} \nonumber
+\end{align}
+$$
+
+Thus minimising the KL-divergence between the posterior
+$p(\mathbb{z} | \mathbb{x})$ and its approximation $q_{\phi}(\mathbb{z})$ is
+equivalent to maximising the quantity
+$L(\phi) =\mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
+          [\log p (\mathbb{z}, \mathbb{x}) -
+           \log q _ {\phi}(\mathbb{z})]$ which is the lower bound of
+the evidence $E = \log p (\mathbb{x})$ (ELBO). This can be
+seen from (\ref{eq:elbo-simple}) as $E \geq L(\phi)$, or from
+[<sup>2</sup>](#ref2)
+
+$$
+\begin{align}
+\log p (\mathbb{x})
+&= \log \int _ {Z} p(\mathbb{z}, \mathbb{x}) d\mathbb{z} \nonumber \\
+&= \log \int _ {Z} p(\mathbb{z}, \mathbb{x})
+                   \frac{q _ {\phi}(\mathbb{z})}
+                        {q _ {\phi}(\mathbb{z})} d\mathbb{z} \nonumber \\
+&= \log \mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
+   \left[\frac{p(\mathbb{z}, \mathbb{x})}
+          {q _ {\phi}(\mathbb{z})}\right] \nonumber \\
+&\geq \mathbb{E} _ {z \sim q _ {\phi}(\mathbb{z})}
+   \left[\log p(\mathbb{z}, \mathbb{x}) -
+         q _ {\phi}(\mathbb{z})\right] \nonumber \\
+\end{align}
+$$
+
+where the last step follows from Jensen's inequality [<sup>3</sup>](#ref3)
+and the fact that log is a concave function. The same results can be derived
+from importance sampling as well [<sup>4</sup>](#ref4).
+
+### ELBO Maximisation
+
 
 #### References
-1. <a href="https://arxiv.org/abs/1610.09033" target="+blank" name="ref1">
-     Operator Variational Inference
+1. <a href="https://arxiv.org/abs/1610.09033" target="_blank" name="ref1">
+     R. Ranganath, J. Altosaar, D. Tran, D. Blei, <i>Operator Variational Inference</i>
    </a>
-2. test
-
-
+2. <a href="https://www.cs.princeton.edu/courses/archive/fall11/cos597C/lectures/variational-inference-i.pdf"
+      target="_blank" name="ref2">
+      D. Blei, <i>Notes on Variational Inference</i>
+   </a>
+3. <a href="https://en.wikipedia.org/wiki/Jensen%27s_inequality"
+      target="_blank"
+      name="ref3">
+      Wikipedia, <i>Jensen's inequality</i>
+   </a>
+4. <a href="http://shakirm.com/papers/VITutorial.pdf"
+      target="_blank"
+      name="ref4">
+      S. Mohamed, <i>Variational Inference for Machine Learning Tutorial</i>
+   </a>
 
 
 {% comment %}
