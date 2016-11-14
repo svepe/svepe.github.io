@@ -201,7 +201,7 @@ which I will cover in a future post.
       target="_blank"
       name="ref5">
       M. Wainwright, M. Jordan, <i>Graphical Models, Exponential Families, and
-      Variational Inference/i>
+      Variational Inference</i>
    </a>
 6. <a href="http://jmlr.org/papers/volume14/hoffman13a/hoffman13a.pdf"
       target="_blank"
