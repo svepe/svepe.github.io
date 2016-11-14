@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Variational Inference
+title: Evidence Lower Bound
 description: introduction and derivation of ELBO maximisation
 topic: inference
 img: /img/vi-intro.png
@@ -8,13 +8,13 @@ img: /img/vi-intro.png
 
 This post is meant to be an introduction to variational inference (VI) for
 people who have machine learning background, but have not studied VI in detail
-before. So if you want to see what the 'evidence lower bound' is, how it is
-derived and why and how to maximise it, just carry on reading.
+before. So if you want to see what the 'evidence lower bound' is and how it is
+derived, just carry on reading.
 
 ### Introduction
 Probabilisitc machine learning recasts the problem of learning into an inference
 task where the observed data $\mathbb{x}$ is used to learn the distribution of
-latent variables $\mathbb{z}$ that can represent either unknown parameters or
+latent variables $\mathbb{z}$, which can represent either unknown parameters or
 unobservable quantities in the problem domain. We are interested in
 finding the posterior over the latent variables
 
@@ -24,7 +24,7 @@ p(\mathbb{z} | \mathbb{x}) =
         {p(\mathbb{x})}
 $$
 
-The evidence $p(\mathbb{x})$, referred to as marginal likelihood as well,
+The evidence (a.k.a. marginal likelihood) $p(\mathbb{x})$
 
 $$
 p(\mathbb{x}) =
@@ -62,8 +62,8 @@ a single positive number which resembles the distance between the two
 distributions. The branch of mathematics which deals with optimising
 higher-order functions (i.e. functions which take functions as their input) is
 called calculus of variations, hence the name *variational inference*. We could
-use a variety of distance operators [<sup>1</sup>](#ref1) and KL-divergence is
-the most widely used, defined as:
+use a variety of distance operators [<sup>1</sup>](#ref1), however KL-divergence
+is the most widely used one and it is defined as:
 
 $$
 \begin{align}
@@ -93,8 +93,10 @@ $$
 \end{align}
 $$
 
-This problem does not have a closed form solution so we need to apply some
-tricks in order to come up with a stochastic optimisation procedure.
+In general, it is not possible to differentiate this expression since it
+contains the posterior we would like to approximate. Therefore, we optimise
+another quantity instead, called the evidence lower bound, which we derive in
+the following section.
 
 ### Evidence Lower Bound (ELBO) Derivation
 
@@ -169,6 +171,13 @@ from importance sampling as well [<sup>4</sup>](#ref4).
 
 ### ELBO Maximisation
 
+If the joint distribution $p(\mathbb{x}, \mathbb{z})$ belongs to the exponential
+family then $\nabla_\phi L(\phi)$ can be expressed analytically which actually
+covers a significant number of models [<sup>4</sup>](#ref2)<sup>,</sup>
+[<sup>5</sup>](#ref5). In other cases, stochastic optimisation procedures are
+utilised resulting in *stochastic variational inference* [<sup>6</sup>](#ref6)
+which I will cover in a future post.
+
 
 #### References
 1. <a href="https://arxiv.org/abs/1610.09033" target="_blank" name="ref1">
@@ -188,7 +197,18 @@ from importance sampling as well [<sup>4</sup>](#ref4).
       name="ref4">
       S. Mohamed, <i>Variational Inference for Machine Learning Tutorial</i>
    </a>
-
+5. <a href="https://people.eecs.berkeley.edu/~wainwrig/Papers/WaiJor08_FTML.pdf"
+      target="_blank"
+      name="ref5">
+      M. Wainwright, M. Jordan, <i>Graphical Models, Exponential Families, and
+      Variational Inference/i>
+   </a>
+6. <a href="http://jmlr.org/papers/volume14/hoffman13a/hoffman13a.pdf"
+      target="_blank"
+      name="ref6">
+      M. Hoffman, D. Blei, C. Wang, H. Paisley, <i>Stochastic Variational
+      Inference</i>
+   </a>
 
 {% comment %}
 <br>
