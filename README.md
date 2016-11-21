@@ -1,5 +1,5 @@
-## Text on figures
+## Serve locally
+`bundle exec jekyll serve`
 
-Font size (regular): 40
-Font size (subscript): 38
+## Text on figures
 Math font: MathJax_Math, MathJax_Math Italic
