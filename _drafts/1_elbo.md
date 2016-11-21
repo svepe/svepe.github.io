@@ -211,5 +211,23 @@ which I will cover in a future post.
    </a>
 
 {% comment %}
-<br>
+Use image for reparametrisation trick (seen from here http://stats.stackexchange.com/questions/199605/how-does-the-reparameterization-trick-for-vaes-work-and-why-is-it-important)
+http://dpkingma.com/wordpress/wp-content/uploads/2015/12/talk_nips_workshop_2015.pdf
+
+References from http://bayesiandeeplearning.org/
+
+    Kingma, DP and Welling, M, ‘’Auto-encoding variational bayes’’, 2013.
+    Rezende, D, Mohamed, S, and Wierstra, D, ‘’Stochastic backpropagation and approximate inference in deep generative models’’, 2014.
+    Blundell, C, Cornebise, J, Kavukcuoglu, K, and Wierstra, D, ‘’Weight uncertainty in neural network’’, 2015.
+    Hernandez-Lobato, JM and Adams, R, ’’Probabilistic backpropagation for scalable learning of Bayesian neural networks’’, 2015.
+    Gal, Y and Ghahramani, Z, ‘’Dropout as a Bayesian approximation: Representing model uncertainty in deep learning’’, 2015.
+    Gal, Y and Ghahramani, G, ‘’Bayesian convolutional neural networks with Bernoulli approximate variational inference’’, 2015.
+    Kingma, D, Salimans, T, and Welling, M. ‘’Variational dropout and the local reparameterization trick’’, 2015.
+    Balan, AK, Rathod, V, Murphy, KP, and Welling, M, ‘’Bayesian dark knowledge’’, 2015.
+    Louizos, C and Welling, M, “Structured and Efficient Variational Deep Learning with Matrix Gaussian Posteriors”, 2016.
+    Lawrence, ND and Quinonero-Candela, J, “Local distance preservation in the GP-LVM through back constraints”, 2006.
+    Tran, D, Ranganath, R, and Blei, DM, “Variational Gaussian Process”, 2015.
+    Neal, R, ‘’Bayesian Learning for Neural Networks’’, 1996.
+    MacKay, D, ‘’A practical Bayesian framework for backpropagation networks‘’, 1992.
+    Dayan, P, Hinton, G, Neal, R, and Zemel, S, ‘’The Helmholtz machine’’, 1995.
 {% endcomment %}
